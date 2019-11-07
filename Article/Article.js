@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Jeff is an Amazing Developer!!',
+    date: 'Nov 6, 2019',
+    firstParagraph: `Pardon me sir, do you have a moment to talk about our lord and savior Jeff?!`,
+
+    secondParagraph: `Jeff managed to actually complete a stretch goal for this project. He thinks.`,
+
+    thirdParagraph: `Jeff jeff, he's our man, if he can't do it, no one can!`
+  },
+  {
+    title: 'Jeff being amazing was Fake News!!!',
+    date: 'Nov 7, 2019',
+    firstParagraph: `Turns out Jeff has no idea what he's doing. `,
+
+    secondParagraph: `Who knew? `,
+
+    thirdParagraph: `Maybe he'll understand more once he graduates Lambda!`
   }
 ];
 
@@ -103,6 +121,7 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
+
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +131,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const newArticle = (title, date, firstP, secondP, thirdP) => {
+  const articleBody = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const articleButton = document.createElement('span');
+  const btnOpen = "Read More";
+  const btnClose = "Collapse";
+
+  articleBody.appendChild(articleTitle);
+  articleBody.appendChild(articleDate);
+  articleBody.appendChild(articleContent1);
+  articleBody.appendChild(articleContent2);
+  articleBody.appendChild(articleContent3);
+  articleBody.appendChild(articleButton);
+
+  articleBody.classList.add('article');
+  articleDate.classList.add('date');
+  articleButton.classList.add('expandButton');
+
+  articleButton.textContent = btnOpen;
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContent1.textContent = firstP;
+  articleContent2.textContent = secondP;
+  articleContent3.textContent = thirdP;
+
+  articleButton.addEventListener('click', ()=> {
+    console.log('read more clicked');
+    // articleBody.classList.toggle('article-open');
+    if (articleButton.textContent===btnOpen){
+      articleButton.textContent=btnClose;
+      articleBody.style.height="400px";
+      articleBody.style.transition = "all .3s";
+    }
+    else {
+      articleButton.textContent=btnOpen;
+      articleBody.style.height="50px";
+      articleBody.style.transition="all .3s";
+    };
+  });
+
+  return articleBody;
+};
+
+const firstArticle = document.querySelector('.articles');
+
+data.forEach(article => {
+  firstArticle.appendChild(newArticle(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph));
+});
