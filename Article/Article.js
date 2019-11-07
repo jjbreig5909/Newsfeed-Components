@@ -166,7 +166,7 @@ const newArticle = (title, date, firstP, secondP, thirdP) => {
     // articleBody.classList.toggle('article-open');
     if (articleButton.textContent===btnOpen){
       articleButton.textContent=btnClose;
-      articleBody.style.height="fit-content";
+      articleBody.style.height="400px";
       articleBody.style.transition = "all .3s";
     }
     else {
