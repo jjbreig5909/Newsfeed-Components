@@ -103,6 +103,7 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
+
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +113,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const newArticle = (title, date, firstP, secondP, thirdP) => {
+  const articleBody = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const articleButton = document.createElement('span');
+  const btnOpen = "Read More";
+  const btnClose = "Collapse";
+
+  articleBody.appendChild(articleTitle);
+  articleBody.appendChild(articleDate);
+  articleBody.appendChild(articleContent1);
+  articleBody.appendChild(articleContent2);
+  articleBody.appendChild(articleContent3);
+  articleBody.appendChild(articleButton);
+
+  articleBody.classList.add('article');
+  articleDate.classList.add('date');
+  articleButton.classList.add('expandButton');
+
+  articleButton.textContent = btnOpen;
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContent1.textContent = firstP;
+  articleContent2.textContent = secondP;
+  articleContent3.textContent = thirdP;
+
+  articleButton.addEventListener('click', ()=> {
+    console.log('read more clicked');
+    articleBody.classList.toggle('article-open');
+    if (articleButton.textContent===btnOpen){
+      articleButton.textContent=btnClose;
+    }
+    else {articleButton.textContent=btnOpen;};
+  });
+
+  return articleBody;
+};
+
+const firstArticle = document.querySelector('.articles');
+
+data.forEach(article => {
+  firstArticle.appendChild(newArticle(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph));
+});
