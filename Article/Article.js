@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Jeff is an Amazing Developer!!',
+    date: 'Nov 6, 2019',
+    firstParagraph: `Pardon me sir, do you have a moment to talk about our lord and savior Jeff?!`,
+
+    secondParagraph: `Jeff managed to actually complete a stretch goal for this project. He thinks.`,
+
+    thirdParagraph: `Jeff jeff, he's our man, if he can't do it, no one can!`
+  },
+  {
+    title: 'Jeff being amazing was Fake News!!!',
+    date: 'Nov 7, 2019',
+    firstParagraph: `Turns out Jeff has no idea what he's doing. `,
+
+    secondParagraph: `Who knew? `,
+
+    thirdParagraph: `Maybe he'll understand more once he graduates Lambda!`
   }
 ];
 
@@ -145,11 +163,17 @@ const newArticle = (title, date, firstP, secondP, thirdP) => {
 
   articleButton.addEventListener('click', ()=> {
     console.log('read more clicked');
-    articleBody.classList.toggle('article-open');
+    // articleBody.classList.toggle('article-open');
     if (articleButton.textContent===btnOpen){
       articleButton.textContent=btnClose;
+      articleBody.style.height="fit-content";
+      articleBody.style.transition = "all .3s";
     }
-    else {articleButton.textContent=btnOpen;};
+    else {
+      articleButton.textContent=btnOpen;
+      articleBody.style.height="50px";
+      articleBody.style.transition="all .3s";
+    };
   });
 
   return articleBody;
